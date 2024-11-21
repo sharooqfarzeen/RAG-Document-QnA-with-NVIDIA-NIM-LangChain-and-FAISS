@@ -36,11 +36,9 @@ def get_response(context, user_question, chat_history):
 
     Answer:
     """
-
-    os.environ["NVIDIA_API_KEY"] = st.session_state["NVIDIA_API_KEY"]
     
     # Setting model to be used
-    model = ChatNVIDIA(model="nvidia/llama-3.1-nemotron-70b-instruct")
+    model = ChatNVIDIA(model="nvidia/llama-3.1-nemotron-70b-instruct", nvidia_api_key=st.session_state["NVIDIA_API_KEY"])
     
     prompt = ChatPromptTemplate.from_template(template=prompt_template)
     
