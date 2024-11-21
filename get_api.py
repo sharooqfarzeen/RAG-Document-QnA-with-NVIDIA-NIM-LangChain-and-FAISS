@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 # Function to get api key from user if not already set
 @st.dialog("Enter Your API Key")
@@ -9,6 +10,7 @@ def get_api():
     if st.button("Submit"):
         if nvidia:
             st.session_state["NVIDIA_API_KEY"] = nvidia
+            os.environ["NVIDIA_API_KEY"] = st.session_state["NVIDIA_API_KEY"]
             st.success("API key set successfully!")
             st.rerun()
         else:

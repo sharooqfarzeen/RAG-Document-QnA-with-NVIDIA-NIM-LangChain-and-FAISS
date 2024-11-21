@@ -23,9 +23,8 @@ def main():
     if "NVIDIA_API_KEY" not in st.session_state:
         if "NVIDIA_API_KEY" not in os.environ:
             get_api()
-            os.environ["NVIDIA_API_KEY"] = st.session_state["NVIDIA_API_KEY"]
         else:
-            os.environ["NVIDIA_API_KEY"] = st.session_state["NVIDIA_API_KEY"]
+            st.session_state["NVIDIA_API_KEY"] = os.environ["NVIDIA_API_KEY"]
     else:
         os.environ["NVIDIA_API_KEY"] = st.session_state["NVIDIA_API_KEY"]
 
