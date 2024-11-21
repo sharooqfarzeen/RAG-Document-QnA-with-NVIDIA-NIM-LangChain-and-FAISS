@@ -9,19 +9,26 @@ from langchain_community.vectorstores import FAISS
 from preprocessing import get_text, get_chunks
 from vector_store import create_vector_store
 from chat import get_response
+from get_api import get_api
 
-# Fetching API Key
-load_dotenv()
-os.environ['NVIDIA_API_KEY'] = os.getenv("NVIDIA_API_KEY")
-
-def main():
-    # Model used for embedding
-    embeddings = NVIDIAEmbeddings(model="NV-Embed-QA")
-    
+def main():    
     # Streamlit app
 
     # Title
     st.set_page_config(page_title="PDF RAG")
+
+    # Fetching API Key
+    load_dotenv()
+
+    if "NVIDIA_API_KEY" not in os.environ:
+        if "NVIDIA_API_KEY" not in st.session_state:
+            get_api()
+            os.environ["NVIDIA_API_KEY"] = st.session_state["NVIDIA_API_KEY"]
+        else:
+            os.environ["NVIDIA_API_KEY"] = st.session_state["NVIDIA_API_KEY"]
+
+    # Model used for embedding
+    embeddings = NVIDIAEmbeddings(model="NV-Embed-QA")
 
     # Header
     st.title("Current Thread")
@@ -64,7 +71,7 @@ def main():
                     # Breaking raw text into chunks
                     chunks = get_chunks(raw_text)
                     # Creates vector store from all pdfs
-                    create_vector_store(chunks, embeddings)
+                    create_vector_store(chunks)
                     # Loading the created vector store on to session_state
                     st.session_state.vector_store = FAISS.load_local("vector_store", embeddings=embeddings, allow_dangerous_deserialization=True)
                     # Display user message in chat message container

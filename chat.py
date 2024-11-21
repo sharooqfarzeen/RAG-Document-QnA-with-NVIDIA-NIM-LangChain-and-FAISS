@@ -4,10 +4,10 @@ from langchain_core.prompts import ChatPromptTemplate
 
 import os
 from dotenv import load_dotenv
+import streamlit as st
 
 # Fetching API Key
 load_dotenv()
-
 
 def get_response(context, user_question, chat_history):
     prompt_template = """
@@ -36,6 +36,9 @@ def get_response(context, user_question, chat_history):
 
     Answer:
     """
+
+    os.environ["NVIDIA_API_KEY"] = st.session_state["NVIDIA_API_KEY"]
+    
     # Setting model to be used
     model = ChatNVIDIA(model="nvidia/llama-3.1-nemotron-70b-instruct")
     
