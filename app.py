@@ -32,7 +32,7 @@ def main():
         embeddings = NVIDIAEmbeddings(model="NV-Embed-QA")
 
         # Header
-        st.title("Current Thread")
+        st.title("RAG Document QnA with NVIDIA NIM")
 
         # Initializing chat history
         if "messages" not in st.session_state:
