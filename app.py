@@ -18,7 +18,7 @@ def main():
     st.set_page_config(page_title="PDF RAG")
 
     # Fetching API Key
-    load_dotenv()
+    load_dotenv(override=True)
 
     if "NVIDIA_API_KEY" not in st.session_state:
         if "NVIDIA_API_KEY" not in os.environ:
