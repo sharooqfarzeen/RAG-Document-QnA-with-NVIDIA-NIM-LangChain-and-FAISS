@@ -1,4 +1,4 @@
-## [Try the app on streamlit](https://rag-document-qna-with-nvidia-nim-langchain-and-faiss.streamlit.app/)
+## [Try the app on Streamlit](https://rag-document-qna-with-nvidia-nim-langchain-and-faiss.streamlit.app/)
 
 **OR**
 
