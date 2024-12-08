@@ -6,7 +6,7 @@ import streamlit as st
 
 
 def create_vector_store(chunks):
-    embeddings = NVIDIAEmbeddings(model="NV-Embed-QA")
+    embeddings = NVIDIAEmbeddings(model="NV-Embed-QA", nvidia_api_key=st.session_state["NVIDIA_API_KEY"])
     # Creates the vector store
     vector_store = FAISS.from_texts(texts=chunks, embedding=embeddings)
     # Stores it locally

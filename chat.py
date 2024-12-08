@@ -3,11 +3,8 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 
 import os
-from dotenv import load_dotenv
 import streamlit as st
 
-# Fetching API Key
-load_dotenv()
 
 def get_response(context, user_question, chat_history):
     prompt_template = """
