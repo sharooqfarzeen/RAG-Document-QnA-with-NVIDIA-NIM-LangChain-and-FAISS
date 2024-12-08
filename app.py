@@ -29,7 +29,7 @@ def main():
     if "NVIDIA_API_KEY" in st.session_state:
 
         # Model used for embedding
-        embeddings = NVIDIAEmbeddings(model="NV-Embed-QA")
+        embeddings = NVIDIAEmbeddings(model="NV-Embed-QA", nvidia_api_key=st.session_state["NVIDIA_API_KEY"])
 
         # Header
         st.title("RAG Document QnA with NVIDIA NIM")
